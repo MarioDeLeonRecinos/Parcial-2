@@ -5,7 +5,7 @@
  */
 package Edificios;
 
-import EstadosYNombresdeUnidades.EstadoEdificio;
+import Enums.EstadoEdificio;
 
 /**
  *

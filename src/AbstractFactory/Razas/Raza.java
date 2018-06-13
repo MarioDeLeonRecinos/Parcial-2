@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package EstadosYNombresdeUnidades;
+package AbstractFactory.Razas;
 
 /**
  *
  * @author mcdre
  */
-public enum EstadoEdificio {
-    working,destroyed;
+public interface Raza {
+    public void NexoCrear();
+    public void soldado(int cantidad, int fase);
 }

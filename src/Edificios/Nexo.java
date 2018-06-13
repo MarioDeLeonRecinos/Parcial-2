@@ -5,9 +5,6 @@
  */
 package Edificios;
 
-import Unidades.unidad;
-import java.util.ArrayList;
-
 /**
  *
  * @author mcdre

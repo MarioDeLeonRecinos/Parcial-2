@@ -8,10 +8,11 @@ package AbstractFactory.Razas;
 import Edificios.MilitiaE;
 import Edificios.Nexo;
 import Edificios.Recurso;
-import EstadosYNombresdeUnidades.EstadoEdificio;
-import EstadosYNombresdeUnidades.NombresUnidades;
-import EstadosYNombresdeUnidades.estadoUnidad;
-import Unidades.unidad;
+import Enums.EstadoEdificio;
+import Enums.NombresUnidades;
+import Enums.RecursoProduccionPorRaza;
+import Enums.estadoUnidad;
+import UnidadesYCosto.unidad;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -20,7 +21,7 @@ import java.util.Scanner;
  *
  * @author mcdre
  */
-public class Elfos {
+public class Elfos implements Raza{
 
     Nexo elfoNexo = new Nexo();
     boolean nexoA = false;
@@ -31,18 +32,19 @@ public class Elfos {
 
     ArrayList<MilitiaE> defensaM = new ArrayList();
     ArrayList<Recurso> defensaF = new ArrayList();
-
-    public void Elfos() {
+    
+    @Override
+    public void NexoCrear() {
         elfoNexo = new Nexo();
     }
-
+    @Override
     public void soldado(int cantidad, int fase) {
 
         for (int i = 0; i < cantidad; i++) {
             if (listaUnidades == null) {
-                listaUnidades.add(new unidad(10, 20, 100, NombresUnidades.Arquero, 1, fase));
+                listaUnidades.add(new unidad(NombresUnidades.Arquero, 1, fase));
             } else {
-                listaUnidades.add(new unidad(10, 20, 100, NombresUnidades.Arquero, listaUnidades.size() + 1, fase));
+                listaUnidades.add(new unidad(NombresUnidades.Arquero, listaUnidades.size() + 1, fase));
             }
         }
     }
@@ -61,9 +63,9 @@ public class Elfos {
     public void vehiculo1(int cantidad, int fase) {
         for (int i = 0; i < cantidad; i++) {
             if (listaUnidades == null) {
-                listaUnidades.add(new unidad(5, 30, 200, NombresUnidades.Catapulta, 1, fase));
+                listaUnidades.add(new unidad(NombresUnidades.Catapulta, 1, fase));
             } else {
-                listaUnidades.add(new unidad(5, 30, 200, NombresUnidades.Catapulta, listaUnidades.size() + 1, fase));
+                listaUnidades.add(new unidad(NombresUnidades.Catapulta, listaUnidades.size() + 1, fase));
             }
         }
     }
@@ -71,9 +73,9 @@ public class Elfos {
     public void vehiculo2(int cantidad, int fase) {
         for (int i = 0; i < cantidad; i++) {
             if (listaUnidades == null) {
-                listaUnidades.add(new unidad(30, 5, 200, NombresUnidades.Ballesta, 1, fase));
+                listaUnidades.add(new unidad( NombresUnidades.Ballesta, 1, fase));
             } else {
-                listaUnidades.add(new unidad(30, 5, 200, NombresUnidades.Ballesta, listaUnidades.size() + 1, fase));
+                listaUnidades.add(new unidad( NombresUnidades.Ballesta, listaUnidades.size() + 1, fase));
             }
         }
     }
@@ -82,9 +84,9 @@ public class Elfos {
 
         for (int i = 0; i < cantidad; i++) {
             if (listaUnidades == null) {
-                fabricas.add(new Recurso(50, fase, 1, 200, 300, tipo, 1));
+                fabricas.add(new Recurso(RecursoProduccionPorRaza.Elfos,fase,tipo,1));
             } else {
-                fabricas.add(new Recurso(50, fase, 1, 200, 300, tipo, fabricas.size() + 1));
+                fabricas.add(new Recurso(RecursoProduccionPorRaza.Elfos,fase,tipo, fabricas.size() + 1));
             }
         }
     }
@@ -127,7 +129,7 @@ public class Elfos {
 
         for (unidad u : unidades) {
             for (Recurso f : fabricas) {
-                if (u.tipoblanco() == 1 && u.blanco() == f.id() && fase - u.faseDamage() >= 0&&u.estado()==estadoUnidad.atacando) {
+                if (u.tipoblanco() == 1 && u.blanco() == f.id() && fase - u.faseDamage() >= 0&&u.estado()==estadoUnidad.atacando&&f.Estado()==EstadoEdificio.working) {
                     f.recibirDanno(u.dealDamage());
                     if (defensaF.contains(f) == false) {
                         defensaF.add(f);
@@ -135,7 +137,7 @@ public class Elfos {
                 }
             }
             for (MilitiaE m : mili) {
-                if (u.tipoblanco() == 2 && u.blanco() == m.id() && fase - u.faseDamage() >= 0&&u.estado()==estadoUnidad.atacando) {
+                if (u.tipoblanco() == 2 && u.blanco() == m.id() && fase - u.faseDamage() >= 0&&u.estado()==estadoUnidad.atacando&&m.Estado()==EstadoEdificio.working) {
                     m.recibirDanno(u.dealDamage());
                     if (defensaM.contains(m) == false) {
                         defensaM.add(m);
@@ -147,8 +149,20 @@ public class Elfos {
                 nexoA = true;
             }
         }
+        for(unidad u : unidades){
+            for (Recurso f : fabricas) {
+                if(u.tipoblanco() == 1 && u.blanco() == f.id() && f.Estado() == EstadoEdificio.destroyed){
+                    u.setTEnemigo();
+                }
+            }
+            for (MilitiaE m : mili) {
+                if(u.tipoblanco() == 1 && u.blanco() == m.id() && m.Estado() == EstadoEdificio.destroyed){
+                    u.setTEnemigo();
+                }
+            }
+        }
         if (defensaF.isEmpty() == false) {
-            this.defensa(unidades);
+            this.peleaDeUnidades(unidades);
         }
         if (this.noAtaco() == true) {
             defensaF = new ArrayList();
@@ -186,7 +200,7 @@ public class Elfos {
         return true;
     }
 
-    public ArrayList<unidad> defensa(ArrayList<unidad> unidades) {
+    public ArrayList<unidad> peleaDeUnidades(ArrayList<unidad> unidades) {
         for (unidad j : listaUnidades) {
             for (unidad i : unidades) {
                 if (j.blanco() == i.blanco() && j.tipoblanco() == i.tipoblanco() && j.estado() == estadoUnidad.defendiendo && i.estado() == estadoUnidad.atacando) {
@@ -201,14 +215,14 @@ public class Elfos {
 
         for (Recurso i : fabricas) {
             for (Recurso j : defensaF) {
-                if (!j.equals(i)) {
+                if (j.equals(i)==false&&j.id()==i.id()) {
                     return false;
                 }
             }
         }
         for (MilitiaE i : mili) {
             for (MilitiaE j : defensaM) {
-                if (!j.equals(i)) {
+                if (j.equals(i)==false&&j.id()==i.id()) {
                     return false;
                 }
             }
@@ -217,7 +231,7 @@ public class Elfos {
         return true;
     }
 
-    public void Defender(int fase) {
+    public void DefenderAlerta(int fase) {
         int a = 0;
         if (defensaF.isEmpty() == false) {
             System.out.println("Puedes defender las siguientes fabricas: ");
@@ -267,7 +281,7 @@ public class Elfos {
         return 0;
     }
     
-    private int darOrdenesAtaque(int fase, int tipo) {
+    public int darOrdenesAtaque(int fase, int tipo) {
         System.out.println("Introduzca el tipo de unidad, el numero de unidades a mandar y el id del blanco: ");
         System.out.println("Si ya no quiere seleccionar nada presione 0: ");
         Scanner reader = new Scanner(System.in);
@@ -289,6 +303,10 @@ public class Elfos {
         }
         
         return 0;
+    }
+    
+    public void newUnidades(ArrayList<unidad> unidades){
+        listaUnidades = unidades;
     }
 
 }

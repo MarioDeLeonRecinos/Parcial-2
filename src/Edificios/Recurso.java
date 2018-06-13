@@ -5,7 +5,8 @@
  */
 package Edificios;
 
-import EstadosYNombresdeUnidades.EstadoEdificio;
+import Enums.EstadoEdificio;
+import Enums.RecursoProduccionPorRaza;
 
 /**
  *
@@ -23,14 +24,14 @@ public class Recurso {
     int Id;
     EstadoEdificio estado;
 
-    public Recurso(int prof, int fcre, int tesp, int limit, double life, int tipe, int id) {
-        this.produccionF = prof;
+    public Recurso( RecursoProduccionPorRaza tipe, int fcre, int tipo, int id) {
+        this.produccionF =tipe.produccionXFase();
         this.fCreado = fcre;
-        this.tEsp = tesp;
-        this.limit = limit;
+        this.tEsp = tipe.tEsp();
+        this.limit = tipe.limite();
         this.acum = 0;
-        this.tipo = tipe;
-        this.vida = life;
+        this.tipo = tipo;
+        this.vida = tipe.vida();
         this.Id = id;
         this.estado = EstadoEdificio.working;
     }

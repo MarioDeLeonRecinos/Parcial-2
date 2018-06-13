@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Unidades;
+package UnidadesYCosto;
 
-import EstadosYNombresdeUnidades.NombresUnidades;
-import EstadosYNombresdeUnidades.estadoUnidad;
+import Enums.NombresUnidades;
+import Enums.estadoUnidad;
 import java.util.Random;
 
 /**
@@ -16,7 +16,7 @@ import java.util.Random;
 public class unidad {
     int dannoUnit;
     int dannoEdificio;
-    int vida;
+    double vida;
     int blanco;
     int tipoblanco;
     int orders;
@@ -26,17 +26,17 @@ public class unidad {
     int Id;
     int faseCreado;
     
-    public unidad(int dano1,int dano2,int life,NombresUnidades tipe,int id,int faseC){
-        dannoUnit=dano1;
-        dannoEdificio=dano2;
-        vida=life;
+    public unidad(NombresUnidades tipe,int id,int faseC){
+        dannoUnit=tipe.danno1();
+        dannoEdificio=tipe.danno2();
+        vida=tipe.vida();
         estado=estadoUnidad.enBase;
         tipo=tipe;
         Id=id;
         faseCreado=faseC;
         
     }
-    public void takeDamage(int dano){
+    public void takeDamage(double dano){
         if(vida-dano>0){
             vida=vida-dano;
         }
@@ -77,6 +77,7 @@ public class unidad {
         orders=order;
         tipoblanco=tipo;
         blanco=bla;
+        
     }
 
     public  void nombre() {
@@ -110,4 +111,9 @@ public class unidad {
     public int orders(){
         return orders;
     }
+    
+    public void setTEnemigo(){
+        estado=estadoUnidad.enTEnemigo;
+    }
+    
 }

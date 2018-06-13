@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package EstadosYNombresdeUnidades;
+package Enums;
 
 /**
  *
  * @author mcdre
  */
-public enum NombresUnidades {
-    Soldado,Arquero,Mosquetero,Caballero,Ballesta,Catapulta;
+public enum EstadoEdificio {
+    working,destroyed;
 }

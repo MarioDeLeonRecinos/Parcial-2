@@ -6,8 +6,8 @@
 package Main;
 
 import AbstractFactory.Razas.Elfos;
-import EstadosYNombresdeUnidades.NombresUnidades;
-import Unidades.unidad;
+import Enums.NombresUnidades;
+import UnidadesYCosto.unidad;
 
 /**
  *
