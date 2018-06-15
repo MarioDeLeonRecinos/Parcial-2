@@ -14,12 +14,24 @@ import UnidadesYCosto.Costo;
 public enum TodosLosCostos {
     Soldado (10,15,30),
     Arquero(30,25,15),
-    Mosquetero(50,15,50),
-    Caballero(100,20,100),
-    Ballesta(150,150,150),
-    Catapulta(150,100,100),
+    globin(50,15,50),
     
-    //cambiarle los valores a los edificios que son los mismos
+    Caballero(20, 15, 35),
+    nightriders(20, 15, 35),
+    Warlord(20, 15, 35),
+    
+    bombers(20, 15, 35),
+    Ballesta(20, 15, 35),
+    Catapulta(20, 15, 35),
+    
+    Paladin(20, 15, 35),
+    PriestOfTheMoon(20, 15, 35),
+    Hoglobin(20, 15, 35),
+    
+    
+    FabricaE(100,100,80),
+    FabricaH(100,100,80),
+    FabricaO(100,100,80),
     
     Barracas1E(100,100,80),
     Barracas2E(100,100,80),

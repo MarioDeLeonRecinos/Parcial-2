@@ -24,7 +24,7 @@ import java.util.Scanner;
  *
  * @author mcdre
  */
-public class Elfos implements Raza {
+public class Humanos implements Raza {
 
     Nexo Nexo = new Nexo();
     boolean nexoA = false;
@@ -38,30 +38,30 @@ public class Elfos implements Raza {
 
     RecursoProduccionPorRaza fabrica = RecursoProduccionPorRaza.Elfos;
 
-    NombresUnidades unidad1 = NombresUnidades.Arquero;
-    NombresUnidades unidad2 = NombresUnidades.nightriders;
-    NombresUnidades unidad3 = NombresUnidades.Ballesta;
+    NombresUnidades unidad1 = NombresUnidades.Soldado;
+    NombresUnidades unidad2 = NombresUnidades.Caballero;
+    NombresUnidades unidad3 = NombresUnidades.Catapulta;
 
-    NombresUnidades especialista = NombresUnidades.PriestOfTheMoon;
+    NombresUnidades especialista = NombresUnidades.Paladin;
 
-    BarracasTipos edificio1 = BarracasTipos.soldadoE;
-    BarracasTipos edificio2 = BarracasTipos.vehiculo1E;
-    BarracasTipos edificio3 = BarracasTipos.vehiculo2E;
+    BarracasTipos edificio1 = BarracasTipos.soldadoH;
+    BarracasTipos edificio2 = BarracasTipos.vehiculo1H;
+    BarracasTipos edificio3 = BarracasTipos.vehiculo2H;
 
-    TodosLosCostos unidad1C = TodosLosCostos.Arquero;
-    TodosLosCostos unidad2C = TodosLosCostos.nightriders;
+    TodosLosCostos unidad1C = TodosLosCostos.Soldado;
+    TodosLosCostos unidad2C = TodosLosCostos.Caballero;
     TodosLosCostos unidad3C = TodosLosCostos.Ballesta;
 
-    TodosLosCostos especialistaC = TodosLosCostos.PriestOfTheMoon;
+    TodosLosCostos especialistaC = TodosLosCostos.Paladin;
 
-    TodosLosCostos fabricaC = TodosLosCostos.FabricaE;
+    TodosLosCostos fabricaC = TodosLosCostos.FabricaH;
 
-    TodosLosCostos edificio1C = TodosLosCostos.Barracas1E;
-    TodosLosCostos edificio2C = TodosLosCostos.Barracas2E;
-    TodosLosCostos edificio3C = TodosLosCostos.Barracas3E;
+    TodosLosCostos edificio1C = TodosLosCostos.Barracas1H;
+    TodosLosCostos edificio2C = TodosLosCostos.Barracas2H;
+    TodosLosCostos edificio3C = TodosLosCostos.Barracas3H;
 
-    TodosLosCostos ataqueC = TodosLosCostos.CostoAtaqueE;
-    TodosLosCostos defensaC = TodosLosCostos.CostoDefensaE;
+    TodosLosCostos ataqueC = TodosLosCostos.CostoAtaqueH;
+    TodosLosCostos defensaC = TodosLosCostos.CostoDefensaH;
 
     @Override
     public void NexoCrear() {

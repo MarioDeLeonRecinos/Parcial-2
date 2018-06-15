@@ -22,6 +22,7 @@ public class unidad {
     int orders;
     estadoUnidad estado;
     NombresUnidades tipo;
+    int tipoN;
     int faseDamage;
     int Id;
     int faseCreado;
@@ -34,7 +35,7 @@ public class unidad {
         tipo=tipe;
         Id=id;
         faseCreado=faseC;
-        
+        tipoN=tipe.tipo();
     }
     public void takeDamage(double dano){
         if(vida-dano>0){
@@ -102,6 +103,10 @@ public class unidad {
     
     public String tipo(){
         return  tipo.toString();
+    }
+    
+    public int tipoN(){
+        return  tipoN;
     }
     
     public int id(){

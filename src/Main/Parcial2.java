@@ -7,6 +7,7 @@ package Main;
 
 import AbstractFactory.Razas.Elfos;
 import Enums.NombresUnidades;
+import Menu.Menu;
 import UnidadesYCosto.unidad;
 
 /**
@@ -20,7 +21,7 @@ public class Parcial2 {
      */
     public static void main(String[] args) {
         
-        Elfos NElfo = new Elfos();
+        /*Elfos NElfo = new Elfos();
         NElfo.soldado(2,1);
         NElfo.vehiculo1(2,1);
         NElfo.imprimirUnidades();
@@ -53,7 +54,13 @@ public class Parcial2 {
         NElfo.acumularRecursos(7);
         NElfo.acumularRecursos(8);
         NElfo.acumularRecursos(9);
-        NElfo.addRecursos();
+        NElfo.addRecursos();*/
+        
+        Menu menu=Menu.getInstance();
+        
+        menu.Select(1);
+        menu.Select(2);
+        menu.main();
 
         
         

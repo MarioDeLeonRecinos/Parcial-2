@@ -65,7 +65,7 @@ public class Recurso {
         return Id;
     }
 
-    public void recibirDanno(double danno) {
+    public void TakeDamage(double danno) {
         if (vida - danno <= 0) {
             vida = 0;
             this.estado = EstadoEdificio.destroyed;
@@ -77,5 +77,21 @@ public class Recurso {
     public EstadoEdificio Estado() {
         return estado;
     }
-
+    public void mostrarN(){
+        switch(tipo){
+            case 1:
+                System.out.println(Id+" Fabrica de oro con "+vida+" de vida");
+                break;
+            case 2:
+                System.out.println(Id+" Fabrica de madera con "+vida+" de vida");
+                break;
+            case 3:
+                System.out.println(Id+" Fabrica de hierro con "+vida+" de vida");
+                break;
+        }
+    }
+    
+    public void mostrarA(){
+        System.out.println(Id+"fabrica con "+vida+" vida restante");
+    }
 }

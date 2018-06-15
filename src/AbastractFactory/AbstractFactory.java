@@ -5,11 +5,13 @@
  */
 package AbastractFactory;
 
+import AbstractFactory.Razas.Raza;
+
 
 /**
  *
  * @author LN710Q
  */
 public interface AbstractFactory {
-
+    abstract Raza getRazaAEscoger(int operacion);
 }

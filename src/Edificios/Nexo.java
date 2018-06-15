@@ -28,9 +28,9 @@ public class Nexo {
         recurso2L = 5000;
         recurso3L = 3000;
 
-        recurso1A = 200;
-        recurso2A = 200;
-        recurso3A = 200;
+        recurso1A = 600;
+        recurso2A = 600;
+        recurso3A = 500;
 
         nivel = 0;
 
@@ -113,15 +113,18 @@ public class Nexo {
             recurso2A = recurso2A - rec2;
             recurso3A = recurso3A - rec3;
         }
+        else{
+            System.out.println("No puede crear ese objeto con la cantidad de recursos que posee en este momento.");
+        }
     }
 
     public boolean TakeDamage(double danno) {
         if (vida-danno <= 0) {
             vida=0;
-            return true;
+            return false;
         } else {
             vida=vida-danno;
-            return false;
+            return true;
         }
 
     }
@@ -143,7 +146,7 @@ public class Nexo {
     }
 
     public void nivelA() {
-        System.out.println(nivel);
+        System.out.println("El nivel actual del nexo es "+nivel);
     }
 
 }
