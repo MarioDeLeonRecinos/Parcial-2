@@ -95,6 +95,7 @@ public class Menu {
     }
 
     public void AccionesPorFasePlayer1() {
+        System.out.println("Jugador 1");
         int opcion;
         boolean finalizado = false;
         int cantidad = 0;
@@ -207,7 +208,7 @@ public class Menu {
     }
 
     public void AccionesPorFasePlayer2() {
-        
+        System.out.println("Jugador 2");
         int opcion;
         boolean finalizado = false;
         int cantidad = 0;
